@@ -23,14 +23,16 @@ HIGHT
 - [ ] 4. As a user I want to be able to set place and interest for new event, so people interested in  the same thing can come
 - [ ] 5. As a user I want to be able to join an event, so everyone can see where am I going
 - [ ] 6. As a user I want to see events around me, so I can easily choose and join them 
-Medium
+Requirements: 
+MEDIUM
 - [ ] 7. As a user I want to be able to set my own interests, so I can find people interested in the same things
 - [ ] 8. As a user I want to be able to set event to public or private, so only people I the event attend can do so
 - [ ] 9. As a user I want to be able to cancel event, so I can manage my time, if my plans change
 - [ ] 10. As a user I want to be able to cancel my attendance to a event, so organizer of the event knows I won’t come anymore
 - [ ] 11. As a user I want to be able to get matched with different people with the same interest and get into same group, so I we can socialize together 
 - [ ] 12. As a user I want to be able to see others profile, so I can find a more suitable friend group for me 
-Low
+Requirements: 
+LOW
 - [ ] 13. As a user I want to be able to see my friend list, so I can see who is online.
 - [ ] 14. As a user I want to be able to add new friends to my friend list, so we can invite each other to events and chat
 - [ ] 15. As a user I want to be able to set custom online status, so my friends can see what I am doing at the moment
