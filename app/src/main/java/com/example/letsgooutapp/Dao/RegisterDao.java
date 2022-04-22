@@ -2,31 +2,23 @@ package com.example.letsgooutapp.Dao;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.room.Dao;
+import androidx.room.Insert;
+import androidx.room.Query;
 
 import com.example.letsgooutapp.Model.Account;
 
-public class RegisterDao {
-    private MutableLiveData<Account> registerUser;
-    private static RegisterDao instance;
+import java.util.List;
 
-    private RegisterDao(){
-        registerUser = new MutableLiveData<>();
-    }
+@Dao
+public interface RegisterDao {
 
-    public static RegisterDao getInstance(){
-        if(instance == null){
-            instance = new RegisterDao();
-        }
-        return instance;
-    }
+    @Insert
+    void addNewAccount(Account account);
 
-    public void addNewAccount(Account account)
-    {
-        //add to database
-        registerUser.setValue(account);
-    }
+    @Query("SELECT * FROM account_table WHERE username = :FindUsername")
+    LiveData<Account> getUser(String FindUsername);
 
-    public LiveData<Account> getRegisteredUser(){
-        return registerUser;
-    }
+    @Query("SELECT * FROM account_table")
+    LiveData<List<Account>> getAllUsers();
 }

@@ -13,6 +13,8 @@ import android.widget.Toast;
 import com.example.letsgooutapp.Model.Account;
 import com.example.letsgooutapp.ViewModel.RegisterViewModel;
 
+import java.util.Objects;
+
 public class RegisterActivity extends AppCompatActivity {
 
     private RegisterViewModel registerViewModel;
@@ -47,8 +49,13 @@ public class RegisterActivity extends AppCompatActivity {
         registerViewModel.getRegisteredUser().observe(this, new Observer<Account>() {
             @Override
             public void onChanged(Account account) {
-                if(account!=null) {
-                    //open new View(the app) when account changes from null to user means they are registered;
+                if (account != null) {
+                    if (account.getUsername() != null) {
+                        Context context = getApplicationContext();
+                        String text = "Account added " + registerViewModel.getRegisteredUser().getValue();
+                        int duration = Toast.LENGTH_SHORT;
+                        Toast.makeText(context, text, duration).show();
+                    }
                 }
             }
         });
@@ -56,14 +63,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     public void submitRegistration(View view) {
-        /* finish();
-
-        Context context = getApplicationContext();
-
-        String text = "Nothing happened, back to login";
-        int duration = Toast.LENGTH_SHORT;
-
-        Toast.makeText(context, text, duration).show(); */
+        // finish();
 
         loadInfo();
         if(password.equals(password2)){
