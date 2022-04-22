@@ -1,4 +1,4 @@
-package com.example.letsgooutapp;
+package com.example.letsgooutapp.Model;
 
 public class Account {
     private String username;
