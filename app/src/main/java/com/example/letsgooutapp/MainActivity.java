@@ -46,4 +46,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void openMap(View view) {
+        startActivity(new Intent(this, MapActivity.class));
+    }
+
+    public void openHome(View view) {
+        startActivity(new Intent(this, HomeActivity.class));
+    }
 }

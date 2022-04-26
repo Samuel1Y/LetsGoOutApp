@@ -64,7 +64,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void submitRegistration(View view) {
         // finish();
-
         loadInfo();
         if(password.equals(password2)){
             Account account = new Account(username, email,date,password);
