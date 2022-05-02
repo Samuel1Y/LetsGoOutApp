@@ -23,7 +23,7 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="${MAPS_API_KEY}" />
+            android:value="AIzaSyDzevsS5gbGEKKEsyuqPv49nbxWOTmIOec" />
 
         <activity
             android:name=".MapActivity"
@@ -31,6 +31,9 @@
             android:label="@string/title_activity_map" />
         <activity
             android:name=".RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SignInActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

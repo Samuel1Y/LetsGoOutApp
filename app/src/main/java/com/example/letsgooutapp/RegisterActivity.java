@@ -5,6 +5,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -55,6 +56,7 @@ public class RegisterActivity extends AppCompatActivity {
                         String text = "Account added " + registerViewModel.getRegisteredUser().getValue();
                         int duration = Toast.LENGTH_SHORT;
                         Toast.makeText(context, text, duration).show();
+                        goToHomeActivity();
                     }
                 }
             }
@@ -82,8 +84,13 @@ public class RegisterActivity extends AppCompatActivity {
         username = usernameText.getText().toString();
         email = emailText.getText().toString();
         date = dateText.getText().toString();
-        password = dateText.getText().toString();
-        password2 = dateText.getText().toString();
+        password = passwordText.getText().toString();
+        password2 = password2Text.getText().toString();
+    }
+
+    private void goToHomeActivity() {
+        startActivity(new Intent(this, HomeActivity.class));
+        finish();
     }
 
 }

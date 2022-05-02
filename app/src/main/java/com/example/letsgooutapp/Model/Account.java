@@ -19,7 +19,7 @@ public class Account implements Serializable {
     @ColumnInfo(name = "email")
     private String email;
 
-    public Account(String username, String email, String dateOfBirth, String password)
+    public Account(@NonNull String username, String email, String dateOfBirth, String password)
     {
         this.email = email;
         this.dateOfBirth = dateOfBirth;

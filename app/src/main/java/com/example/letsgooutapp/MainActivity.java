@@ -2,13 +2,16 @@ package com.example.letsgooutapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.letsgooutapp.Dao.RegisterDao;
 import com.example.letsgooutapp.Model.Account;
@@ -34,11 +37,45 @@ public class MainActivity extends AppCompatActivity {
         password = passwordText.getText().toString();
         registerViewModel = new ViewModelProvider(this).get(RegisterViewModel.class);
 
+        registerViewModel.getRegisteredUser().observe(this, new Observer<Account>() {
+            @Override
+            public void onChanged(Account account) {
+                if (account != null) {
+                    if (account.getUsername() != null) {
+                        Context context = getApplicationContext();
+                        String text = "Account logged in " + registerViewModel.getRegisteredUser().getValue();
+                        int duration = Toast.LENGTH_SHORT;
+                        Toast.makeText(context, text, duration).show();
+                        goToHomeActivity();
+                    }
+                }
+            }
+        });
+
     }
 
     public void logIn(View view) {
         Button loginButton = view.findViewById(R.id.LogInButton);
-        loginButton.setText("Not implemented yet");
+        username = usernameText.getText().toString();
+        password = passwordText.getText().toString();
+        registerViewModel.getUser(username).observe(this, new Observer<Account>() {
+            @Override
+            public void onChanged(Account account) {
+                if (account != null) {
+                    if (account.getUsername() != null) {
+                        if(account.getPassword().equals(password)) {
+                            goToHomeActivity();
+                        }
+                        else{
+                            Context context = getApplicationContext();
+                            String text = "Password is wrong";
+                            int duration = Toast.LENGTH_SHORT;
+                            Toast.makeText(context, text, duration).show();
+                        }
+                    }
+                }
+            }
+        });
     }
 
     public void moveToRegisterView(View view) {
@@ -52,5 +89,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void openHome(View view) {
         startActivity(new Intent(this, HomeActivity.class));
+    }
+
+    private void goToHomeActivity() {
+        startActivity(new Intent(this, HomeActivity.class));
+        finish();
     }
 }

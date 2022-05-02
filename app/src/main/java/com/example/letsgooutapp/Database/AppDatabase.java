@@ -11,7 +11,7 @@ import com.example.letsgooutapp.Dao.RegisterDao;
 import com.example.letsgooutapp.Model.Account;
 import com.example.letsgooutapp.Model.Event;
 
-@Database(entities = {Account.class, Event.class}, version =1)
+@Database(entities = {Account.class, Event.class}, version =2)
 public abstract class AppDatabase extends RoomDatabase{
 
     private static AppDatabase instance;
