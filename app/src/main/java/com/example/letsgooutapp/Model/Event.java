@@ -25,14 +25,22 @@ public class Event implements Serializable {
     @ColumnInfo(name = "creator")
     private String creator; // or Account ? not sure which would be better
 
+    @ColumnInfo(name = "latitude")
+    private double latitude;
+
+    @ColumnInfo(name = "longitude")
+    private double longitude;
+
     //need participants but I guess we need another table for that
     //also idk if we want to have interests/themes for event or just accounts have those
 
-    public Event(String title, String description, String location, String creator) {
+    public Event(String title, String description, String location, String creator, Double latitude, Double longitude) {
         this.title = title;
         this.description = description;
         this.location = location;
         this.creator = creator;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public Event() {
@@ -80,5 +88,21 @@ public class Event implements Serializable {
 
     public void setCreator(String creator) {
         this.creator = creator;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 }

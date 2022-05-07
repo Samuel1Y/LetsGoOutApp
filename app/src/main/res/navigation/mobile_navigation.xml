@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/ListFragment">
+
+    <fragment
+        android:id="@+id/ListFragment"
+        android:name="com.example.letsgooutapp.EventListFragment"
+        android:label="fragment_one"
+        tools:layout="@layout/fragment_event_list" />
+
+    <fragment
+        android:id="@+id/AddEventFragment"
+        android:name="com.example.letsgooutapp.AddEventFragment"
+        android:label="fragment_two"
+        tools:layout="@layout/fragment_add_event" />
+
+</navigation>

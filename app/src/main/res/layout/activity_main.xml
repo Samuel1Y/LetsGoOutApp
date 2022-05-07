@@ -46,9 +46,10 @@
         android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LoginUsername"
+        app:layout_constraintVertical_bias="0.141"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
@@ -67,7 +68,7 @@
     <Button
         android:id="@+id/RegisterButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:onClick="moveToRegisterView"
         android:text="Register"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -75,7 +76,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LogInButton"
-        app:layout_constraintVertical_bias="0.732" />
+        app:layout_constraintVertical_bias="0.497" />
 
     <TextView
         android:id="@+id/textView2"
@@ -103,12 +104,12 @@
         android:id="@+id/fakeLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Fake Login"
         android:onClick="openHome"
+        android:text="Fake Login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/RegisterButton"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.85" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

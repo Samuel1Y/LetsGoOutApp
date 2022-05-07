@@ -1,14 +1,17 @@
 package com.example.letsgooutapp.Model;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.letsgooutapp.HomeActivity;
 import com.example.letsgooutapp.R;
 
 import java.util.ArrayList;
@@ -16,16 +19,16 @@ import java.util.ArrayList;
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> {
 
     private ArrayList<Event> events;
-    private View.OnClickListener onClickListener;
+    private OnClickListener listener;
 
     public EventAdapter(ArrayList<Event> events)
     {
         this.events = events;
     }
 
-    public void setOnClickListener(View.OnClickListener listener)
+    public void setOnClickListener(OnClickListener listener)
     {
-        this.onClickListener = listener;
+        this.listener = listener;
     }
 
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -58,11 +61,17 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
             creator = itemView.findViewById(R.id.creator);
             showOnMapButton = itemView.findViewById(R.id.showOnMapButton);
 
-           /*
             itemView.setOnClickListener(view -> {
-              onClickListener.onClick(events.get(getBindingAdapterPosition()));
+              listener.onClick(events.get(getBindingAdapterPosition()));
+
             });
-           */
+            showOnMapButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    Toast.makeText(view.getContext(),events.get(getBindingAdapterPosition()).getLocation(), Toast.LENGTH_LONG);
+                }
+            });
         }
     }
 
