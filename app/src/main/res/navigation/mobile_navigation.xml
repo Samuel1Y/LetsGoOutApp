@@ -17,4 +17,10 @@
         android:label="fragment_two"
         tools:layout="@layout/fragment_add_event" />
 
+    <fragment
+        android:id="@+id/ProfileFragment"
+        android:name="com.example.letsgooutapp.ProfileFragment"
+        android:label="fragment_three"
+        tools:layout="@layout/fragment_profile" />
+
 </navigation>

@@ -39,12 +39,16 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        Button ListFragmentButton = findViewById(R.id.ListFragmentButton);
+        Button listFragmentButton = findViewById(R.id.ListFragmentButton);
         Button addEventFragmentButton = findViewById(R.id.AddEventFragmentButton);
+        Button profileFragmentButton = findViewById(R.id.ProfileFragmentButton);
+
         NavController navController = Navigation.findNavController(this, R.id.fragmentContainerView);
 
-        ListFragmentButton.setOnClickListener(v-> navController.navigate(R.id.ListFragment));
+        listFragmentButton.setOnClickListener(v-> navController.navigate(R.id.ListFragment));
         addEventFragmentButton.setOnClickListener(v-> navController.navigate(R.id.AddEventFragment));
+        profileFragmentButton.setOnClickListener(v-> navController.navigate(R.id.ProfileFragment));
+
 
         eventViewModel = new ViewModelProvider(this).get(EventViewModel.class);
         eventViewModel.getAddedEvent().observe(this,new Observer<Event>() {
