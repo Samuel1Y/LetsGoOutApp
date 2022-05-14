@@ -67,7 +67,7 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_add_event, container, false);
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
         /*profileUsername.findViewById(R.id.profileUsername);
         profileInterests.findViewById(R.id.profileInterests);

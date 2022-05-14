@@ -38,27 +38,27 @@ public class EventListFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
+    private int mParam1;
     private String mParam2;
 
     private RecyclerView eventList;
     private EventAdapter eventAdapter;
     private EventViewModel eventViewModel;
     private ArrayList<Event> events = new ArrayList<>();
+    private int selectedPosition;
 
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
      * @param param2 Parameter 2.
      * @return A new instance of fragment EventListFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static EventListFragment newInstance(String param1, String param2) {
+    public static EventListFragment newInstance(int selectedPosition, String param2) {
         EventListFragment fragment = new EventListFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
+        args.putInt(ARG_PARAM1, fragment.selectedPosition);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
@@ -72,7 +72,7 @@ public class EventListFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam1 = getArguments().getInt(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
         eventViewModel = new ViewModelProvider(this).get(EventViewModel.class);
@@ -86,11 +86,12 @@ public class EventListFragment extends Fragment {
 
                     eventAdapter.setOnClickListener(event -> {
                         Toast.makeText(getContext(), event.getDescription(), Toast.LENGTH_SHORT).show();
+                        selectedPosition = event.getId();
+                        eventViewModel.setSelectedEventId(event.getId());
                     });
                 }
             }
         });
-        //this.events = (ArrayList<Event>) eventViewModel.getAllEvents().getValue();
     }
 
     @Override
@@ -109,13 +110,5 @@ public class EventListFragment extends Fragment {
         eventList = view.findViewById(R.id.rv);
         eventList.hasFixedSize();
         eventList.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        //dummy data... later get ArrayList of all events from database
-        /*ArrayList<Event> array = new ArrayList<Event>();
-        array.add(new Event("going out", "just going out with few friends", "horsens", "me", 55.858141, 9.847580));
-        array.add(new Event("house party", "party lmao", "Aarhus", "not me", 55.858231, 9.847688));
-        array.add(new Event("going to restaurant", "me hungry me eat", "Vejle", "my friend", 55.858251, 9.848588));*/
-
-
     }
 }

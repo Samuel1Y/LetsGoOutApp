@@ -12,8 +12,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.letsgooutapp.Model.Account;
 import com.example.letsgooutapp.Model.Event;
 import com.example.letsgooutapp.ViewModel.EventViewModel;
+import com.example.letsgooutapp.ViewModel.RegisterViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -37,6 +39,8 @@ public class AddEventFragment extends Fragment {
     private String location;
 
     private EventViewModel eventViewModel;
+    private RegisterViewModel registerViewModel;
+    private Account loggedInAcc = new Account();
 
 
     public AddEventFragment() {
@@ -78,6 +82,7 @@ public class AddEventFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_event, container, false);
 
+        registerViewModel = new ViewModelProvider(this).get(RegisterViewModel.class);
         eventViewModel = new ViewModelProvider(this).get(EventViewModel.class);
         eventViewModel.getAddedEvent().observe(getViewLifecycleOwner(),new Observer<Event>() {
 
@@ -86,6 +91,14 @@ public class AddEventFragment extends Fragment {
                 eventViewModel.getAddedEvent().getValue().getLatitude();
                 eventViewModel.getAddedEvent().getValue().getLongitude();
                 System.out.println(eventViewModel.getAddedEvent().toString());
+            }
+        });
+
+        registerViewModel.getRegisteredUser().observe(getViewLifecycleOwner(), new Observer<Account>() {
+            @Override
+            public void onChanged(Account account) {
+                // NOT WORKING !!!!!!!!!!!!!!!!!!!!!!!!!
+                loggedInAcc = account;
             }
         });
 
@@ -101,7 +114,7 @@ public class AddEventFragment extends Fragment {
             public void onClick(View view) {
                 loadData();
 
-                eventViewModel.addEvent(new Event(title,description,location,"logged in acc",eventViewModel.getAddedEvent().getValue().getLatitude(), eventViewModel.getAddedEvent().getValue().getLongitude()));
+                eventViewModel.addEvent(new Event(title,description,location, loggedInAcc.getUsername(),eventViewModel.getAddedEvent().getValue().getLatitude(), eventViewModel.getAddedEvent().getValue().getLongitude()));
                 System.out.println(title+", "+ description+", "+ location +", "+ eventViewModel.getAddedEvent().getValue().getLatitude()+", "+eventViewModel.getAddedEvent().getValue().getLongitude());
 
                 resetValues();

@@ -18,6 +18,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
 
     private ArrayList<Event> events;
     private OnClickListener listener;
+    private int selectedPos = RecyclerView.NO_POSITION;
 
     public EventAdapter(ArrayList<Event> events)
     {
@@ -39,6 +40,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         viewHolder.title.setText(events.get(position).getTitle());
         viewHolder.location.setText(events.get(position).getLocation());
         viewHolder.creator.setText(events.get(position).getCreator());
+        viewHolder.itemView.setSelected(selectedPos == position);
     }
 
     public int getItemCount() {
@@ -50,26 +52,37 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         private final TextView title;
         private final TextView location;
         private final TextView creator;
-        private final Button showOnMapButton;
+        private final Button deleteButton;
+        private final Button joinButton;
 
         ViewHolder(View itemView){
             super(itemView);
             title = itemView.findViewById(R.id.title);
             location = itemView.findViewById(R.id.location);
             creator = itemView.findViewById(R.id.creator);
-            showOnMapButton = itemView.findViewById(R.id.deleteButton);
+            deleteButton = itemView.findViewById(R.id.deleteButton);
+            joinButton =  itemView.findViewById(R.id.joinButton);
 
             itemView.setOnClickListener(view -> {
               listener.onClick(events.get(getBindingAdapterPosition()));
-
+                notifyItemChanged(selectedPos);
+                selectedPos = getLayoutPosition();
+                notifyItemChanged(selectedPos);
             });
-            showOnMapButton.setOnClickListener(new View.OnClickListener() {
+            /*
+            deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
-                    Toast.makeText(view.getContext(),events.get(getBindingAdapterPosition()).getLocation(), Toast.LENGTH_LONG);
                 }
             });
+
+            joinButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });*/
         }
     }
 

@@ -24,6 +24,7 @@ import javax.xml.transform.Result;
 
 public class EventRepository {
     private MutableLiveData<Event> addedEvent;
+    private MutableLiveData<Integer> selectedId;
     private EventDao eventDao;
     private static EventRepository instance;
     private ExecutorService executorService;
@@ -35,8 +36,10 @@ public class EventRepository {
         executorService = Executors.newFixedThreadPool(2);
         mainThreadHandler = HandlerCompat.createAsync(Looper.getMainLooper());
         addedEvent = new MutableLiveData<>();
+        selectedId = new MutableLiveData<>();
         Event event = new Event();
         addedEvent.setValue(event);
+        selectedId.setValue(-1);
     }
 
     public static synchronized EventRepository getInstance(Application application){
@@ -63,6 +66,14 @@ public class EventRepository {
         return addedEvent;
     }
 
+    public void setSelectedId(int id){
+        selectedId.setValue(id);
+    }
+
+    public LiveData<Integer> getSelectedId(){
+        return selectedId;
+    }
+
     public LiveData<Event> getEventByTitle(String title){
         return eventDao.getEventByTitle(title);
     }
@@ -76,6 +87,11 @@ public class EventRepository {
         executorService.execute(() ->  {
             eventDao.updateParticipantsOfEvent(newParticipants, eventId);
         });
+    }
+
+    public LiveData<String> getParticipantsByEventId(int id)
+    {
+        return eventDao.getParticipantsByEventId(id);
     }
 
     public LiveData<List<Event>> getAllEvents(){

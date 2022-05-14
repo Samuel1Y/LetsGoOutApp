@@ -7,8 +7,10 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.letsgooutapp.Model.Event;
+import com.example.letsgooutapp.Model.EventAdapter;
 import com.example.letsgooutapp.ViewModel.EventViewModel;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -21,6 +23,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.letsgooutapp.databinding.ActivityMapBinding;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MapActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -31,6 +34,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
     private Bundle bundle;
     private EventViewModel eventViewModel;
     private ArrayList<Event> events;
+
 
 
     @Override
@@ -47,7 +51,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         mapFragment.getMapAsync(this);
 
         eventViewModel = new ViewModelProvider(this).get(EventViewModel.class);
-        eventViewModel.getAddedEvent().observe(this,new Observer<Event>() {
+        eventViewModel.getAddedEvent().observe(this, new Observer<Event>() {
 
             @Override
             public void onChanged(Event event) {
@@ -56,6 +60,23 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
                 System.out.println(eventViewModel.getAddedEvent().toString());
             }
         });
+        eventViewModel.getAllEvents().observe(this, new Observer<List<Event>>() {
+            @Override
+            public void onChanged(List<Event> eventsFrom) {
+                if (!eventsFrom.isEmpty()) {
+                    //events.addAll(eventsFrom);
+                    for (int i = 0; i < eventsFrom.size(); i++)
+                    {
+                        LatLng position = new LatLng(eventsFrom.get(i).getLatitude(),eventsFrom.get(i).getLongitude());
+                        mMap.addMarker(
+                                new MarkerOptions()
+                                        .position(position)
+                                        .title(eventsFrom.get(i).getTitle()));
+                    }
+                }
+            }
+        });
+
     }
 
     /**
@@ -70,6 +91,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+
 
         // Add a marker in Horsens and move the camera
         //LatLng horsens = new LatLng(55.858131, 9.847588);
@@ -90,19 +112,10 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 
             }
         });
-        ArrayList<Event> events = new ArrayList<Event>();
-        events.add(new Event("going out", "just going out with few friends", "horsens", "me", 55.858141, 9.847580));
-        events.add(new Event("house party", "party lmao", "Aarhus", "not me", 55.958231, 9.947688));
-        events.add(new Event("going to restaurant", "me hungry me eat", "Vejle", "my friend", 55.858251, 9.848588));
-
-        for (int i = 0; i < events.size(); i++)
-        {
-            LatLng position = new LatLng(events.get(i).getLatitude(),events.get(i).getLongitude());
-            mMap.addMarker(
-                    new MarkerOptions()
-                            .position(position)
-                            .title(events.get(i).getTitle()));
-        }
+        //ArrayList<Event> events = new ArrayList<Event>();
+        //events.add(new Event("going out", "just going out with few friends", "horsens", "me", 55.858141, 9.847580));
+        //events.add(new Event("house party", "party lmao", "Aarhus", "not me", 55.958231, 9.947688));
+        //events.add(new Event("going to restaurant", "me hungry me eat", "Vejle", "my friend", 55.858251, 9.848588));
 
         eventMarker = mMap.addMarker(
                 new MarkerOptions()
@@ -128,9 +141,5 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         //bundle.putDouble("longitude",0.0);
         //fragment.setArguments(bundle);
         finish();
-    }
-
-    public void showLocationOnMap(View view) {
-
     }
 }

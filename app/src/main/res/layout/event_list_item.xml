@@ -2,10 +2,13 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#e4e4e4">
+    android:background="@drawable/selector"
+    tools:context=".HomeActivity">>
+
 
     <TextView
         android:id="@+id/title"
@@ -29,10 +32,19 @@
         android:text="location" />
 
     <Button
+        android:id="@+id/joinButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:focusable="false"
+        android:onClick="joinEvent"
+        android:text="Join" />
+
+    <Button
         android:id="@+id/deleteButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:focusable="false"
         android:onClick="deleteEvent"
-        android:text="Delete"></Button>
+        android:text="Delete" />
+
 </LinearLayout>

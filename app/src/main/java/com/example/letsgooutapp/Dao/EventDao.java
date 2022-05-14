@@ -21,6 +21,9 @@ public interface EventDao {
     @Query ("UPDATE event_table SET participants = :newParticipants WHERE id = :eventId")
     void updateParticipantsOfEvent(ArrayList<String> newParticipants, int eventId);
 
+    @Query("SELECT participants FROM event_table WHERE id = :id")
+    LiveData<String> getParticipantsByEventId(int id);
+
     @Query ("DELETE FROM event_table WHERE id = :id" )
     void deleteEventById(int id);
 

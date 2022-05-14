@@ -26,6 +26,13 @@ public class EventViewModel extends AndroidViewModel {
         return repository.getAddedEvent();
     }
 
+    public void setSelectedEventId(int id){
+        repository.setSelectedId(id);
+    }
+
+    public LiveData<Integer> getSelectedEventId(){
+        return repository.getSelectedId();
+    }
 
     public void addEvent(Event event){
         repository.addNewEvent(event);
@@ -39,6 +46,12 @@ public class EventViewModel extends AndroidViewModel {
     {
         repository.updateParticipantsOfEvent(newParticipants, eventId);
     }
+
+    public LiveData<String> getParticipantsByEventId(int id)
+    {
+        return repository.getParticipantsByEventId(id);
+    }
+
 
     public LiveData<List<Event>> getAllEvents(){
         return repository.getAllEvents();

@@ -24,6 +24,7 @@ import com.example.letsgooutapp.Model.EventAdapter;
 import com.example.letsgooutapp.ViewModel.EventViewModel;
 import com.example.letsgooutapp.ViewModel.RegisterViewModel;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +33,9 @@ public class HomeActivity extends AppCompatActivity {
     private RecyclerView eventList;
     private EventAdapter eventAdapter;
     private EventViewModel eventViewModel;
+    private RegisterViewModel registerViewModel;
+    private int selectedId;
+    private Account loggedInAcc = new Account();
 
 
     @Override
@@ -49,6 +53,7 @@ public class HomeActivity extends AppCompatActivity {
         addEventFragmentButton.setOnClickListener(v-> navController.navigate(R.id.AddEventFragment));
         profileFragmentButton.setOnClickListener(v-> navController.navigate(R.id.ProfileFragment));
 
+        registerViewModel = new ViewModelProvider(this).get(RegisterViewModel.class);
 
         eventViewModel = new ViewModelProvider(this).get(EventViewModel.class);
         eventViewModel.getAddedEvent().observe(this,new Observer<Event>() {
@@ -60,9 +65,31 @@ public class HomeActivity extends AppCompatActivity {
                 System.out.println(eventViewModel.getAddedEvent().toString());
             }
         });
+        eventViewModel.getSelectedEventId().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                selectedId = eventViewModel.getSelectedEventId().getValue();
+                System.out.println("HOME ACVITIVY DASJDNKJNDKASJDSJKADSDN    " +selectedId);
+            }
+        });
+
+        eventViewModel.getParticipantsByEventId(selectedId).observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                System.out.println(s);
+            }
+        });
+
+        registerViewModel.getRegisteredUser().observe(this, new Observer<Account>() {
+            @Override
+            public void onChanged(Account account) {
+                loggedInAcc = account;
+            }
+        });
     }
 
     public void deleteEvent(View view) {
+        eventViewModel.deleteEventById(selectedId);
     }
 
     public void openMap(View view)
@@ -73,5 +100,18 @@ public class HomeActivity extends AppCompatActivity {
 
     public void addEvent(View view) {
 
+    }
+    public void joinEvent(View view) {
+        // NOT WORKING !!!!!!!!!!!!!!!!!!!!!!!!!
+
+        //floating button
+        ArrayList<String> participants = new ArrayList<>();
+        participants.add(loggedInAcc.getUsername());
+        System.out.println(loggedInAcc.getUsername());
+        eventViewModel.updateParticipantsOfEvent(participants, selectedId);
+
+        String participantsString = eventViewModel.getParticipantsByEventId(selectedId).getValue();
+        //participants.add(registerViewModel.getRegisteredUser().getValue().getUsername());
+        //eventViewModel.updateParticipantsOfEvent(participants, selectedId);
     }
 }
