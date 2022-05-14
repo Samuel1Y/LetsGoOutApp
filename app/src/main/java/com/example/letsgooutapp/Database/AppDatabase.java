@@ -15,7 +15,7 @@ import com.example.letsgooutapp.Model.Event;
 import com.example.letsgooutapp.Model.Interest;
 import com.example.letsgooutapp.Model.Participant;
 
-@Database(entities = {Account.class, Event.class, Participant.class, Interest.class}, version =6)
+@Database(entities = {Account.class, Event.class, Participant.class, Interest.class}, version =8)
 public abstract class AppDatabase extends RoomDatabase{
 
     private static AppDatabase instance;

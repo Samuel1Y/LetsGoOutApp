@@ -9,9 +9,9 @@ import java.io.Serializable;
 
 @Entity(tableName = "event_table")
 public class Event implements Serializable {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @NonNull
-    private Integer id;
+    private int id;
 
     @ColumnInfo(name = "title")
     private String title;
@@ -35,6 +35,16 @@ public class Event implements Serializable {
     //also idk if we want to have interests/themes for event or just accounts have those
 
     public Event(String title, String description, String location, String creator, Double latitude, Double longitude) {
+        this.title = title;
+        this.description = description;
+        this.location = location;
+        this.creator = creator;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
+    public Event(int id, String title, String description, String location, String creator, Double latitude, Double longitude) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.location = location;

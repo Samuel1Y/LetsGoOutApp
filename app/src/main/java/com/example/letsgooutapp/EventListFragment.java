@@ -1,9 +1,11 @@
 package com.example.letsgooutapp;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,11 +16,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.letsgooutapp.Model.Account;
 import com.example.letsgooutapp.Model.Event;
 import com.example.letsgooutapp.Model.EventAdapter;
 import com.example.letsgooutapp.ViewModel.EventViewModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -40,7 +44,7 @@ public class EventListFragment extends Fragment {
     private RecyclerView eventList;
     private EventAdapter eventAdapter;
     private EventViewModel eventViewModel;
-    private ArrayList<Event> events;
+    private ArrayList<Event> events = new ArrayList<>();
 
     /**
      * Use this factory method to create a new instance of
@@ -72,7 +76,20 @@ public class EventListFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
         eventViewModel = new ViewModelProvider(this).get(EventViewModel.class);
-        eventViewModel.getAllEvents();
+        eventViewModel.getAllEvents().observe(this, new Observer<List<Event>>() {
+            @Override
+            public void onChanged(List<Event> eventsFrom) {
+                if (!eventsFrom.isEmpty()) {
+                    events.addAll(eventsFrom);
+                    eventAdapter = new EventAdapter(events);
+                    eventList.setAdapter(eventAdapter);
+
+                    eventAdapter.setOnClickListener(event -> {
+                        Toast.makeText(getContext(), event.getDescription(), Toast.LENGTH_SHORT).show();
+                    });
+                }
+            }
+        });
         //this.events = (ArrayList<Event>) eventViewModel.getAllEvents().getValue();
     }
 
@@ -94,18 +111,11 @@ public class EventListFragment extends Fragment {
         eventList.setLayoutManager(new LinearLayoutManager(getContext()));
 
         //dummy data... later get ArrayList of all events from database
-        ArrayList<Event> array = new ArrayList<Event>();
+        /*ArrayList<Event> array = new ArrayList<Event>();
         array.add(new Event("going out", "just going out with few friends", "horsens", "me", 55.858141, 9.847580));
         array.add(new Event("house party", "party lmao", "Aarhus", "not me", 55.858231, 9.847688));
-        array.add(new Event("going to restaurant", "me hungry me eat", "Vejle", "my friend", 55.858251, 9.848588));
+        array.add(new Event("going to restaurant", "me hungry me eat", "Vejle", "my friend", 55.858251, 9.848588));*/
 
-        //ArrayList<Event> arrayDB = (ArrayList<Event>) eventViewModel.getAllEvents().getValue();
 
-        eventAdapter = new EventAdapter(array);
-        eventList.setAdapter(eventAdapter);
-
-        eventAdapter.setOnClickListener(event -> {
-            Toast.makeText(getContext(), event.getDescription(), Toast.LENGTH_SHORT).show();
-        });
     }
 }
