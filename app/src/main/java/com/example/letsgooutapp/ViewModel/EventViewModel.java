@@ -11,6 +11,7 @@ import com.example.letsgooutapp.Model.Event;
 import com.example.letsgooutapp.Repository.EventRepository;
 import com.example.letsgooutapp.Repository.RegisterRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EventViewModel extends AndroidViewModel {
@@ -32,6 +33,11 @@ public class EventViewModel extends AndroidViewModel {
 
     public void deleteEventById(int id) {
         repository.deleteEventById(id);
+    }
+
+    public void updateParticipantsOfEvent(ArrayList<String> newParticipants, int eventId)
+    {
+        repository.updateParticipantsOfEvent(newParticipants, eventId);
     }
 
     public LiveData<List<Event>> getAllEvents(){

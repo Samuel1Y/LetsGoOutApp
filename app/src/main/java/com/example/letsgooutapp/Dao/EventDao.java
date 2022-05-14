@@ -5,9 +5,11 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.example.letsgooutapp.Model.Event;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Dao
@@ -16,14 +18,21 @@ public interface EventDao {
     @Insert
     void addNewEvent(Event event);
 
+    @Query ("UPDATE event_table SET participants = :newParticipants WHERE id = :eventId")
+    void updateParticipantsOfEvent(ArrayList<String> newParticipants, int eventId);
+
     @Query ("DELETE FROM event_table WHERE id = :id" )
     void deleteEventById(int id);
 
     @Query("SELECT * FROM event_table WHERE id = :id")
     LiveData<Event> getEventById(int id);
 
-    @Query("SELECT * FROM event_table WHERE id = :title")
+    @Query("SELECT * FROM event_table WHERE title = :title")
     LiveData<Event> getEventByTitle(String title);
+    //exception if 2 events have same name ?
+
+    @Query("SELECT participants FROM event_table WHERE id = :id")
+    LiveData<List<String>> getParticipantsByEventTitle(int id);
 
     @Query("SELECT * FROM event_table")
     LiveData<List<Event>> getAllEvents();

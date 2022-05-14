@@ -6,6 +6,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 @Entity(tableName = "event_table")
 public class Event implements Serializable {
@@ -31,6 +32,9 @@ public class Event implements Serializable {
     @ColumnInfo(name = "longitude")
     private double longitude;
 
+    @ColumnInfo(name = "participants")
+    private ArrayList<String> participants;
+
     //need participants but I guess we need another table for that
     //also idk if we want to have interests/themes for event or just accounts have those
 
@@ -41,6 +45,7 @@ public class Event implements Serializable {
         this.creator = creator;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.participants = new ArrayList<String>();
     }
 
     public Event(int id, String title, String description, String location, String creator, Double latitude, Double longitude) {
@@ -51,6 +56,7 @@ public class Event implements Serializable {
         this.creator = creator;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.participants = new ArrayList<String>();
     }
 
     public Event() {
@@ -58,6 +64,7 @@ public class Event implements Serializable {
         this.description = null;
         this.location = null;
         this.creator = null;
+        this.participants = new ArrayList<String>();
     }
 
     public int getId() {
@@ -114,5 +121,13 @@ public class Event implements Serializable {
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
+    }
+
+    public ArrayList<String> getParticipants() {
+        return participants;
+    }
+
+    public void setParticipants(ArrayList<String> participants) {
+        this.participants = participants;
     }
 }

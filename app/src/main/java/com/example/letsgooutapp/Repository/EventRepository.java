@@ -14,6 +14,7 @@ import com.example.letsgooutapp.Database.AppDatabase;
 import com.example.letsgooutapp.Model.Account;
 import com.example.letsgooutapp.Model.Event;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.ExecutorService;
@@ -68,6 +69,13 @@ public class EventRepository {
 
     public LiveData<Event> getEventById(int id){
         return eventDao.getEventById(id);
+    }
+
+    public void updateParticipantsOfEvent(ArrayList<String> newParticipants, int eventId)
+    {
+        executorService.execute(() ->  {
+            eventDao.updateParticipantsOfEvent(newParticipants, eventId);
+        });
     }
 
     public LiveData<List<Event>> getAllEvents(){
