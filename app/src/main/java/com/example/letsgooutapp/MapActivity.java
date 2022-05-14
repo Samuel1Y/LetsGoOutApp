@@ -14,6 +14,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -107,6 +108,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
                 new MarkerOptions()
                         .position(horsensLocation)
                         .draggable(true));
+
         mMap.moveCamera(CameraUpdateFactory.zoomTo(15));  //zoom -> move to location... it doesn't work the other way idk why
         mMap.moveCamera(CameraUpdateFactory.newLatLng(horsensLocation));
     }

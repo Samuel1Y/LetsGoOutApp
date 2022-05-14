@@ -1,6 +1,5 @@
 package com.example.letsgooutapp.Model;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.letsgooutapp.HomeActivity;
 import com.example.letsgooutapp.R;
 
 import java.util.ArrayList;
@@ -59,7 +57,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
             title = itemView.findViewById(R.id.title);
             location = itemView.findViewById(R.id.location);
             creator = itemView.findViewById(R.id.creator);
-            showOnMapButton = itemView.findViewById(R.id.showOnMapButton);
+            showOnMapButton = itemView.findViewById(R.id.deleteButton);
 
             itemView.setOnClickListener(view -> {
               listener.onClick(events.get(getBindingAdapterPosition()));

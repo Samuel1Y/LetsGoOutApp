@@ -52,6 +52,12 @@ public class EventRepository {
         addedEvent.setValue(event);
     }
 
+    public void deleteEventById(int id){
+        executorService.execute(() ->  {
+            eventDao.deleteEventById(id);
+        });
+    }
+
     public LiveData<Event> getAddedEvent(){
         return addedEvent;
     }

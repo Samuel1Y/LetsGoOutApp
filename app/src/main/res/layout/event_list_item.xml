@@ -29,11 +29,10 @@
         android:text="location" />
 
     <Button
-        android:id="@+id/showOnMapButton"
+        android:id="@+id/deleteButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="showLocationOnMap"
-        android:text="Map"
-        android:focusable="false">
-    </Button>
+        android:focusable="false"
+        android:onClick="deleteEvent"
+        android:text="Delete"></Button>
 </LinearLayout>

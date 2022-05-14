@@ -10,6 +10,7 @@ import java.io.Serializable;
 @Entity(tableName = "account_table")
 public class Account implements Serializable {
     @PrimaryKey @NonNull private String username;
+
     @ColumnInfo(name = "password")
     private String password;
 

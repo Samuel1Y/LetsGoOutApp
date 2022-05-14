@@ -40,6 +40,7 @@ public class EventListFragment extends Fragment {
     private RecyclerView eventList;
     private EventAdapter eventAdapter;
     private EventViewModel eventViewModel;
+    private ArrayList<Event> events;
 
     /**
      * Use this factory method to create a new instance of
@@ -69,8 +70,10 @@ public class EventListFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
-            eventViewModel = new ViewModelProvider(this).get(EventViewModel.class);
         }
+        eventViewModel = new ViewModelProvider(this).get(EventViewModel.class);
+        eventViewModel.getAllEvents();
+        //this.events = (ArrayList<Event>) eventViewModel.getAllEvents().getValue();
     }
 
     @Override

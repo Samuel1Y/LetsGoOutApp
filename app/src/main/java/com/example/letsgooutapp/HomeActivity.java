@@ -58,7 +58,7 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
-    public void showLocationOnMap(View view) {
+    public void deleteEvent(View view) {
     }
 
     public void openMap(View view)

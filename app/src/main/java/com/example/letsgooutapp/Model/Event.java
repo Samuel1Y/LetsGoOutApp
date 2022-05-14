@@ -11,7 +11,7 @@ import java.io.Serializable;
 public class Event implements Serializable {
     @PrimaryKey
     @NonNull
-    private int id;
+    private Integer id;
 
     @ColumnInfo(name = "title")
     private String title;
@@ -23,7 +23,7 @@ public class Event implements Serializable {
     private String location;
 
     @ColumnInfo(name = "creator")
-    private String creator; // or Account ? not sure which would be better
+    private String creator;
 
     @ColumnInfo(name = "latitude")
     private double latitude;

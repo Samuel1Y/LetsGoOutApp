@@ -30,6 +30,10 @@ public class EventViewModel extends AndroidViewModel {
         repository.addNewEvent(event);
     }
 
+    public void deleteEventById(int id) {
+        repository.deleteEventById(id);
+    }
+
     public LiveData<List<Event>> getAllEvents(){
         return repository.getAllEvents();
     }
