@@ -17,12 +17,12 @@ motivation: let’s meet new people in you area and socialize when we finally ca
 
 Requirements: 
 HIGHT
-- [ ] 1.As a user I want to be able to register, so I can have my personal account
-- [ ] 2. As a user I want to be able to login so I have access to my account
-- [ ] 3. As a user I want to be able to create new event, so I can meet new people 
+- [X] 1.As a user I want to be able to register, so I can have my personal account
+- [X] 2. As a user I want to be able to login so I have access to my account
+- [X] 3. As a user I want to be able to create new event, so I can meet new people 
 - [ ] 4. As a user I want to be able to set place and interest for new event, so people interested in  the same thing can come
 - [ ] 5. As a user I want to be able to join an event, so everyone can see where am I going
-- [ ] 6. As a user I want to see events around me, so I can easily choose and join them 
+- [X] 6. As a user I want to see events around me, so I can easily choose and join them 
 Requirements: 
 MEDIUM
 - [ ] 7. As a user I want to be able to set my own interests, so I can find people interested in the same things
