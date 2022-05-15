@@ -22,13 +22,11 @@ public class RegisterActivity extends AppCompatActivity {
 
     private EditText usernameText;
     private EditText emailText;
-    private EditText dateText;
     private EditText passwordText;
     private EditText password2Text;
 
     private String username;
     private String email;
-    private String date;
     private String password;
     private String password2;
 
@@ -40,7 +38,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         usernameText = findViewById(R.id.RegisterUsername);
         emailText = findViewById(R.id.RegisterEmail);
-        dateText = findViewById(R.id.RegisterDate);
         passwordText = findViewById(R.id.RegisterPassword);
         password2Text = findViewById(R.id.RegisterPassword2);
 
@@ -68,7 +65,7 @@ public class RegisterActivity extends AppCompatActivity {
         // finish();
         loadInfo();
         if(password.equals(password2)){
-            Account account = new Account(username, email,date,password);
+            Account account = new Account(username, email,password);
             registerViewModel.addNewAccount(account);
         }
         else{
@@ -83,7 +80,6 @@ public class RegisterActivity extends AppCompatActivity {
     private void loadInfo(){
         username = usernameText.getText().toString();
         email = emailText.getText().toString();
-        date = dateText.getText().toString();
         password = passwordText.getText().toString();
         password2 = password2Text.getText().toString();
     }

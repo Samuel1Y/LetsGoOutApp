@@ -15,19 +15,15 @@ public class Account implements Serializable {
     @ColumnInfo(name = "password")
     private String password;
 
-    @ColumnInfo(name = "dateOfBirth")
-    private String dateOfBirth;
-
     @ColumnInfo(name = "email")
     private String email;
 
     @ColumnInfo(name = "interests")
     private ArrayList<String> interests;
 
-    public Account(@NonNull String username, String email, String dateOfBirth, String password)
+    public Account(@NonNull String username, String email, String password)
     {
         this.email = email;
-        this.dateOfBirth = dateOfBirth;
         this.username = username;
         this.password = password;
         this.interests = new ArrayList<>();
@@ -35,7 +31,6 @@ public class Account implements Serializable {
     public Account(@NonNull String username, String email, String dateOfBirth, String password, ArrayList<String> interests)
     {
         this.email = email;
-        this.dateOfBirth = dateOfBirth;
         this.username = username;
         this.password = password;
         this.interests = interests;
@@ -43,7 +38,6 @@ public class Account implements Serializable {
 
     public Account(){
         this.email = null;
-        this.dateOfBirth = null;
         this.username = null;
         this.password = null;
     }
@@ -55,9 +49,6 @@ public class Account implements Serializable {
         return username;
     }
 
-    public String getDateOfBirth() {
-        return dateOfBirth;
-    }
 
     public String getEmail() {
         return email;
@@ -65,10 +56,6 @@ public class Account implements Serializable {
 
     public void setUsername(@NonNull String username) {
         this.username = username;
-    }
-
-    public void setDateOfBirth(String dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
     }
 
     public void setEmail(String email) {
