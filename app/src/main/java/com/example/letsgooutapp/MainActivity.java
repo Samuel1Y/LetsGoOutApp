@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 if (account != null) {
                     if (account.getUsername() != null) {
                         if(account.getPassword().equals(password)) {
+                            registerViewModel.setRegisteredUser(account);
                             goToHomeActivity();
                         }
                         else{

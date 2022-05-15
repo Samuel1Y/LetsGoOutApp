@@ -62,7 +62,7 @@ public class InterestRepository {
 
     public LiveData<List<String>> getInterestsByEventId(int eventId)
     {
-        return interestDao.getInterestsByEventId(eventId);
+        return interestDao.getInterestsByInterestId(eventId);
     }
 
     public LiveData<List<Interest>> getAllInterests()

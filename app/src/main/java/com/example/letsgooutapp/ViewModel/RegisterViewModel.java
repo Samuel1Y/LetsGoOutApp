@@ -35,5 +35,9 @@ public class RegisterViewModel extends AndroidViewModel {
         return repository.getAllUser();
     }
 
+    public void setRegisteredUser(Account account){
+        repository.setRegisteredUser(account);
+    }
+
 
 }

@@ -6,6 +6,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 @Entity(tableName = "account_table")
 public class Account implements Serializable {
@@ -20,12 +21,24 @@ public class Account implements Serializable {
     @ColumnInfo(name = "email")
     private String email;
 
+    @ColumnInfo(name = "interests")
+    private ArrayList<String> interests;
+
     public Account(@NonNull String username, String email, String dateOfBirth, String password)
     {
         this.email = email;
         this.dateOfBirth = dateOfBirth;
         this.username = username;
         this.password = password;
+        this.interests = new ArrayList<>();
+    }
+    public Account(@NonNull String username, String email, String dateOfBirth, String password, ArrayList<String> interests)
+    {
+        this.email = email;
+        this.dateOfBirth = dateOfBirth;
+        this.username = username;
+        this.password = password;
+        this.interests = interests;
     }
 
     public Account(){
@@ -64,5 +77,17 @@ public class Account implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public ArrayList<String> getInterests() {
+        return interests;
+    }
+
+    public void setInterests(ArrayList<String> interests) {
+        this.interests = interests;
+    }
+
+    public void addInterest(Interest interest){
+        this.interests.add(String.valueOf(interest.getInterestId()));
     }
 }

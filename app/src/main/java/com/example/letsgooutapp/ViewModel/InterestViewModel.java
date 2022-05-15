@@ -4,6 +4,7 @@ import android.app.Application;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import com.example.letsgooutapp.Model.Event;
 import com.example.letsgooutapp.Model.Interest;
@@ -34,14 +35,19 @@ public class InterestViewModel extends AndroidViewModel {
     {
         return repository.getEventIdsByInterest(interest);
     }
-
-    public LiveData<List<String>> getInterestsByEventId(int eventId)
-    {
-        return repository.getInterestsByEventId(eventId);
-    }
-
     public LiveData<List<Interest>> getAllInterests()
     {
-        return repository.getAllInterests();
+        MutableLiveData<List<Interest>> toSend = new MutableLiveData<>();
+        ArrayList<Interest> interests = new ArrayList<>();
+        Interest interest = new Interest("Sports");
+        Interest interest1 = new Interest("Fashion");
+        Interest interest2 = new Interest("IT");
+        interests.add(interest);
+        interests.add(interest1);
+        interests.add(interest2);
+        toSend.setValue(interests);
+
+        return toSend;
+        //return repository.getAllInterests();
     }
 }

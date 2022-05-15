@@ -62,4 +62,7 @@ public class RegisterRepository {
         return registerDao.getAllUsers();
     }
 
+    public void setRegisteredUser(Account account){
+        registeredUser.setValue(account);
+    }
 }

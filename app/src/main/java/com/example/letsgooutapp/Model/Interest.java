@@ -10,7 +10,7 @@ import com.google.firebase.database.annotations.NotNull;
 
 import java.io.Serializable;
 
-@Entity(tableName = "interest_table", primaryKeys = {"interest", "eventId"})
+@Entity(tableName = "interest_table")
 public class Interest implements Serializable {
 
 
@@ -18,19 +18,23 @@ public class Interest implements Serializable {
     @NonNull
     private String interest;
 
-    @ColumnInfo(name = "eventId")
-    @NonNull private int eventId;
+    @ColumnInfo(name = "interestId")
+    @PrimaryKey(autoGenerate = true)
+    @NonNull private int interestId;
 
-    public Interest(@NotNull String interest,@NotNull int eventId)
+    public Interest(@NonNull String interest, int interestId)
     {
         this.interest = interest;
-        this.eventId = eventId;
+        this.interestId = interestId;
     }
 
-    public Interest()
+    public Interest(@NonNull String interest)
     {
+        this.interest = interest;
+    }
+
+    public Interest() {
         this.interest = null;
-        this.eventId = -1;
     }
 
     public String getInterest() {
@@ -41,12 +45,12 @@ public class Interest implements Serializable {
         this.interest = interest;
     }
 
-    public int getEventId() {
-        return eventId;
+    public int getInterestId() {
+        return interestId;
     }
 
-    public void setEventId(int eventId) {
-        this.eventId = eventId;
+    public void setInterestId(int eventId) {
+        this.interestId = eventId;
     }
 
 }
