@@ -21,13 +21,15 @@ HIGHT
 - [X] 2. As a user I want to be able to login so I have access to my account
 - [X] 3. As a user I want to be able to create new event, so I can meet new people 
 - [ ] 4. As a user I want to be able to set place and interest for new event, so people interested in  the same thing can come
-- [ ] 5. As a user I want to be able to join an event, so everyone can see where am I going
+- [X] set place
+- [ ] set interest
+- [X] 5. As a user I want to be able to join an event, so everyone can see where am I going
 - [X] 6. As a user I want to see events around me, so I can easily choose and join them 
 Requirements: 
 MEDIUM
-- [ ] 7. As a user I want to be able to set my own interests, so I can find people interested in the same things
+- [X] 7. As a user I want to be able to set my own interests, so I can find people interested in the same things
 - [ ] 8. As a user I want to be able to set event to public or private, so only people I the event attend can do so
-- [ ] 9. As a user I want to be able to cancel event, so I can manage my time, if my plans change
+- [X] 9. As a user I want to be able to cancel event, so I can manage my time, if my plans change
 - [ ] 10. As a user I want to be able to cancel my attendance to a event, so organizer of the event knows I won’t come anymore
 - [ ] 11. As a user I want to be able to get matched with different people with the same interest and get into same group, so I we can socialize together 
 - [ ] 12. As a user I want to be able to see others profile, so I can find a more suitable friend group for me 
