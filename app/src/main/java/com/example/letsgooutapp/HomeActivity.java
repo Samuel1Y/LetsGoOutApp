@@ -122,12 +122,15 @@ public class HomeActivity extends AppCompatActivity {
         eventViewModel.getParticipantsByEventId(selectedId).observe(this, new Observer<String>() {
             @Override
             public void onChanged(String s) {
-                System.out.println("JOIN EVENT  BUTTON : "+s);
-                ArrayList<String> participants = fromString(s);
-                if(!participants.contains(loggedInAcc.getUsername()))
+                if(s != null)
                 {
-                    participants.add(loggedInAcc.getUsername());
-                    eventViewModel.updateParticipantsOfEvent(participants, selectedId);
+                    System.out.println("JOIN EVENT  BUTTON : "+s);
+                    ArrayList<String> participants = fromString(s);
+                    if(!participants.contains(loggedInAcc.getUsername()))
+                    {
+                        participants.add(loggedInAcc.getUsername());
+                        eventViewModel.updateParticipantsOfEvent(participants, selectedId);
+                    }
                 }
             }
         });
