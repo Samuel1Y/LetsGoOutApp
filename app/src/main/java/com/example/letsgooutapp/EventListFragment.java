@@ -105,8 +105,6 @@ public class EventListFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
-
         eventList = view.findViewById(R.id.rv);
         eventList.hasFixedSize();
         eventList.setLayoutManager(new LinearLayoutManager(getContext()));

@@ -12,50 +12,44 @@
 
         <GridView
             android:id="@+id/gridView"
-            android:layout_width="wrap_content"
-            android:layout_height="345dp"
-            android:layout_marginTop="16dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:numColumns="3"
             app:layout_constraintBottom_toTopOf="@+id/editInterests"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profileYourInterest">
-
-        </GridView>
-
-        <ImageView
-            android:id="@+id/profilePicture"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/avatars" />
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline7"
+            app:layout_constraintTop_toBottomOf="@+id/yourInterestText"></GridView>
 
         <TextView
             android:id="@+id/profileUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="4dp"
             android:text="Username"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="@+id/profilePicture"
+            app:layout_constraintHorizontal_bias="0.526"
             app:layout_constraintStart_toStartOf="@+id/profilePicture"
             app:layout_constraintTop_toBottomOf="@+id/profilePicture" />
 
-        <TextView
-            android:id="@+id/profileYourInterest"
+        <ImageView
+            android:id="@+id/profilePicture"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="52dp"
-            android:text="Your Interests:"
-            android:textSize="16sp"
+            android:layout_marginTop="136dp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline7"
+            app:layout_constraintHorizontal_bias="0.476"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profileUsername" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
 
         <Button
             android:id="@+id/editInterests"
@@ -66,5 +60,15 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/yourInterestText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Yout Interests"
+            app:layout_constraintEnd_toEndOf="@+id/gridView"
+            app:layout_constraintStart_toStartOf="@+id/gridView"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

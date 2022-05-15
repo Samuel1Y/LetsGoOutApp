@@ -116,15 +116,12 @@ public class HomeActivity extends AppCompatActivity {
 
 
     public void joinEvent(View view) {
-        // NOT WORKING !!!!!!!!!!!!!!!!!!!!!!!!!
-
         //floating button
         eventViewModel.getParticipantsByEventId(selectedId).observe(this, new Observer<String>() {
             @Override
             public void onChanged(String s) {
                 if(s != null)
                 {
-                    System.out.println("JOIN EVENT  BUTTON : "+s);
                     ArrayList<String> participants = fromString(s);
                     if(!participants.contains(loggedInAcc.getUsername()))
                     {

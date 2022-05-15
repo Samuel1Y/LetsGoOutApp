@@ -63,7 +63,6 @@ public class EventViewModel extends AndroidViewModel {
         return repository.getParticipantsByEventId(id);
     }
 
-
     public LiveData<List<Event>> getAllEvents(){
         return repository.getAllEvents();
     }
