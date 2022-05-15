@@ -139,6 +139,7 @@ public class ProfileFragment extends Fragment {
 
         profileUsername = view.findViewById(R.id.profileUsername);
         profilePicture = view.findViewById(R.id.profilePicture);
+        profileUsername.setText(registerViewModel.getRegisteredUser().getValue().getUsername());
 
         Button btn = view.findViewById(R.id.editInterests);
         btn.setOnClickListener(new View.OnClickListener() {

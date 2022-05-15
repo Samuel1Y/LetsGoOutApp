@@ -15,36 +15,31 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:text="title" />
+        android:text="title"
+        android:textAlignment="viewStart" />
 
     <TextView
         android:id="@+id/creator"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:text="creator" />
+        android:text="creator"
+        android:textAlignment="viewStart" />
 
     <TextView
         android:id="@+id/location"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:text="location" />
+        android:text="location"
+        android:textAlignment="viewStart" />
 
-    <Button
-        android:id="@+id/joinButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:focusable="false"
-        android:onClick="joinEvent"
-        android:text="Join" />
-
-    <Button
-        android:id="@+id/deleteButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:focusable="false"
-        android:onClick="deleteEvent"
-        android:text="Delete" />
+    <TextView
+        android:id="@+id/participants"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="participants"
+        android:textAlignment="viewStart" />
 
 </LinearLayout>

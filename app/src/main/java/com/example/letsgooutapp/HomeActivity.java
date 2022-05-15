@@ -1,5 +1,6 @@
 package com.example.letsgooutapp;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
@@ -23,8 +24,11 @@ import com.example.letsgooutapp.Model.Event;
 import com.example.letsgooutapp.Model.EventAdapter;
 import com.example.letsgooutapp.ViewModel.EventViewModel;
 import com.example.letsgooutapp.ViewModel.RegisterViewModel;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Array;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +40,6 @@ public class HomeActivity extends AppCompatActivity {
     private RegisterViewModel registerViewModel;
     private int selectedId;
     private Account loggedInAcc = new Account();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +60,6 @@ public class HomeActivity extends AppCompatActivity {
 
         eventViewModel = new ViewModelProvider(this).get(EventViewModel.class);
         eventViewModel.getAddedEvent().observe(this,new Observer<Event>() {
-
             @Override
             public void onChanged(Event event) {
                 eventViewModel.getAddedEvent().getValue().getLatitude();
@@ -69,14 +71,6 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onChanged(Integer integer) {
                 selectedId = eventViewModel.getSelectedEventId().getValue();
-                System.out.println("HOME ACVITIVY DASJDNKJNDKASJDSJKADSDN    " +selectedId);
-            }
-        });
-
-        eventViewModel.getParticipantsByEventId(selectedId).observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                System.out.println(s);
             }
         });
 
@@ -89,7 +83,24 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void deleteEvent(View view) {
-        eventViewModel.deleteEventById(selectedId);
+            eventViewModel.getEventById(selectedId).observe(this, new Observer<Event>() {
+                @Override
+                public void onChanged(Event event) {
+                    if(event != null)
+                    {
+                        if(loggedInAcc.getUsername().equals(event.getCreator()))
+                        {
+                            eventViewModel.deleteEventById(selectedId);
+                        }
+                        else{
+                            Context context = getApplicationContext();
+                            String text = "You are not the creator of this event !";
+                            int duration = Toast.LENGTH_SHORT;
+                            Toast.makeText(context, text, duration).show();
+                        }
+                    }
+                }
+            });
     }
 
     public void openMap(View view)
@@ -97,21 +108,33 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(new Intent(this, MapActivity.class));
     }
 
-
-    public void addEvent(View view) {
-
+    public void selectLocationForNewEvent(View view)
+    {
+        startActivity(new Intent(this, MapActivity.class));
     }
+
+
+
     public void joinEvent(View view) {
         // NOT WORKING !!!!!!!!!!!!!!!!!!!!!!!!!
 
         //floating button
-        ArrayList<String> participants = new ArrayList<>();
-        participants.add(loggedInAcc.getUsername());
-        System.out.println(loggedInAcc.getUsername());
-        eventViewModel.updateParticipantsOfEvent(participants, selectedId);
+        eventViewModel.getParticipantsByEventId(selectedId).observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                System.out.println("JOIN EVENT  BUTTON : "+s);
+                ArrayList<String> participants = fromString(s);
+                if(!participants.contains(loggedInAcc.getUsername()))
+                {
+                    participants.add(loggedInAcc.getUsername());
+                    eventViewModel.updateParticipantsOfEvent(participants, selectedId);
+                }
+            }
+        });
+    }
 
-        String participantsString = eventViewModel.getParticipantsByEventId(selectedId).getValue();
-        //participants.add(registerViewModel.getRegisteredUser().getValue().getUsername());
-        //eventViewModel.updateParticipantsOfEvent(participants, selectedId);
+    private static ArrayList<String> fromString(String value) {
+        Type listType = new TypeToken<ArrayList<String>>() {}.getType();
+        return new Gson().fromJson(value, listType);
     }
 }

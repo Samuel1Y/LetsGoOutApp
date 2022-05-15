@@ -10,7 +10,10 @@ import com.example.letsgooutapp.Model.Account;
 import com.example.letsgooutapp.Model.Event;
 import com.example.letsgooutapp.Repository.EventRepository;
 import com.example.letsgooutapp.Repository.RegisterRepository;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +43,14 @@ public class EventViewModel extends AndroidViewModel {
 
     public void deleteEventById(int id) {
         repository.deleteEventById(id);
+    }
+
+    public LiveData<Event> getEventByTitle(String title){
+        return repository.getEventByTitle(title);
+    }
+
+    public LiveData<Event> getEventById(int id){
+        return repository.getEventById(id);
     }
 
     public void updateParticipantsOfEvent(ArrayList<String> newParticipants, int eventId)

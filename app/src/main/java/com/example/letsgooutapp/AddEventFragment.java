@@ -97,7 +97,6 @@ public class AddEventFragment extends Fragment {
         registerViewModel.getRegisteredUser().observe(getViewLifecycleOwner(), new Observer<Account>() {
             @Override
             public void onChanged(Account account) {
-                // NOT WORKING !!!!!!!!!!!!!!!!!!!!!!!!!
                 loggedInAcc = account;
             }
         });

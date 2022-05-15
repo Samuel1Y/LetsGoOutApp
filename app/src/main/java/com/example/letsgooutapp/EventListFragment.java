@@ -80,8 +80,8 @@ public class EventListFragment extends Fragment {
             @Override
             public void onChanged(List<Event> eventsFrom) {
                 if (!eventsFrom.isEmpty()) {
-                    events.addAll(eventsFrom);
-                    eventAdapter = new EventAdapter(events);
+
+                    eventAdapter = new EventAdapter((ArrayList<Event>) eventsFrom);
                     eventList.setAdapter(eventAdapter);
 
                     eventAdapter.setOnClickListener(event -> {
