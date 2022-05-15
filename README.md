@@ -20,9 +20,7 @@ HIGHT
 - [X] 1.As a user I want to be able to register, so I can have my personal account
 - [X] 2. As a user I want to be able to login so I have access to my account
 - [X] 3. As a user I want to be able to create new event, so I can meet new people 
-- [ ] 4. As a user I want to be able to set place and interest for new event, so people interested in  the same thing can come
-- [X] set place
-- [ ] set interest
+- [X] 4. As a user I want to be able to set place and interest for new event, so people interested in  the same thing can come
 - [X] 5. As a user I want to be able to join an event, so everyone can see where am I going
 - [X] 6. As a user I want to see events around me, so I can easily choose and join them 
 Requirements: 
