@@ -11,7 +11,9 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.letsgooutapp.Dao.RegisterDao;
 import com.example.letsgooutapp.Database.AppDatabase;
 import com.example.letsgooutapp.Model.Account;
+import com.example.letsgooutapp.Model.Interest;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.ExecutorService;
@@ -65,4 +67,19 @@ public class RegisterRepository {
     public void setRegisteredUser(Account account){
         registeredUser.setValue(account);
     }
+
+    public void setInterests(ArrayList<Interest> interests){
+        ArrayList<String> interestStrings = new ArrayList<>();
+        for(Interest interest:interests) {
+            interestStrings.add(String.valueOf(interest.getInterestId()));
+        }
+        executorService.execute(() ->  {
+            registerDao.updateInterests(interestStrings, registeredUser.getValue().getUsername());
+        });
+    }
+
+    public LiveData<List<String>> getAllInterests(){
+        return registerDao.getInterestsByUsername(registeredUser.getValue().getUsername());
+    }
+
 }

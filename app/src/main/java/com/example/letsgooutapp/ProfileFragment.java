@@ -24,8 +24,12 @@ import com.example.letsgooutapp.Model.Interest;
 import com.example.letsgooutapp.Model.InterestAdapter;
 import com.example.letsgooutapp.ViewModel.EventViewModel;
 import com.example.letsgooutapp.ViewModel.InterestViewModel;
+import com.example.letsgooutapp.ViewModel.RegisterViewModel;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Array;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,13 +50,14 @@ public class ProfileFragment extends Fragment {
     private String mParam2;
 
     private TextView profileUsername;
-    private TextView profileInterests;
     private ImageView profilePicture;
     private GridView interestsView;
+    private ArrayList<Integer> myInterests = new ArrayList<>();
     private ArrayList<Interest> interests = new ArrayList<>();
     private ArrayList<Boolean> interestsClicked = new ArrayList<>();
     private InterestAdapter interestAdapter;
     private InterestViewModel interestViewModel;
+    private RegisterViewModel registerViewModel;
 
 
     public ProfileFragment() {
@@ -84,13 +89,34 @@ public class ProfileFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        registerViewModel = new ViewModelProvider(this).get(RegisterViewModel.class);
+        registerViewModel.getAllInterests().observe(this, new Observer<List<String>>() {
+            @Override
+            public void onChanged(List<String> stringsInterests) {
+                if (!stringsInterests.isEmpty()) {
+                    if (!interests.isEmpty()) {
+                        myInterests = new ArrayList<>();
+                        Gson gson = new Gson();
+                        Type listType = new TypeToken<ArrayList<String>>() {}.getType();
+                        ArrayList<String> stringArray = gson.fromJson(stringsInterests.get(0), listType);
+                        for (String stringId : stringArray) {
+                            //Interest interestToAdd = interests.get(Integer.parseInt(stringId));
+                            myInterests.add(Integer.parseInt(stringId));
+                            interestAdapter = new InterestAdapter(getActivity(),interests, myInterests);
+                            interestsView.setAdapter(interestAdapter);
+                            //interestAdapter.setArrayClickedToTrue(Integer.parseInt(stringId));
+                        }
+                    }
+                }
+            }
+        });
         interestViewModel = new ViewModelProvider(this).get(InterestViewModel.class);
         interestViewModel.getAllInterests().observe(this, new Observer<List<Interest>>() {
             @Override
             public void onChanged(List<Interest> interestsFrom) {
                 if (!interestsFrom.isEmpty()) {
                     interests.addAll(interestsFrom);
-                    interestAdapter = new InterestAdapter(getActivity(),interests);
+                    interestAdapter = new InterestAdapter(getActivity(),interests, myInterests);
                     interestsView.setAdapter(interestAdapter);
                     /*interestsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
@@ -102,7 +128,6 @@ public class ProfileFragment extends Fragment {
                 }
             }
         });
-
     }
 
     @Override
@@ -113,7 +138,6 @@ public class ProfileFragment extends Fragment {
         interestsView = (GridView) view.findViewById(R.id.gridView);
 
         profileUsername = view.findViewById(R.id.profileUsername);
-        profileInterests = view.findViewById(R.id.profileInterests);
         profilePicture = view.findViewById(R.id.profilePicture);
 
         Button btn = view.findViewById(R.id.editInterests);
@@ -121,6 +145,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 ArrayList<Interest> chosenInterests = interestAdapter.getChosenInterests();
+                registerViewModel.setInterests(chosenInterests);
             }
         });
 

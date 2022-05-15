@@ -24,11 +24,14 @@ public class InterestAdapter extends BaseAdapter {
 
     LayoutInflater inflater;
 
-    public InterestAdapter(Context context, ArrayList<Interest> interest) {
+    public InterestAdapter(Context context, ArrayList<Interest> interest, ArrayList<Integer> myInterests) {
         this.context = context;
         this.interests = interest;
         for (int i = 0; i < interest.size(); i++){
             this.interestsClicked.add(Boolean.FALSE);
+        }
+        for(int myInt =0; myInt<myInterests.size();myInt++){
+            this.interestsClicked.set(myInterests.get(myInt),Boolean.TRUE);
         }
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -75,6 +78,12 @@ public class InterestAdapter extends BaseAdapter {
 
         buttonInterest.setText(interests.get(position).getInterest());
 
+        if (interestsClicked.get(position)) {
+            buttonInterest.setBackgroundColor(Color.CYAN);
+        } else {
+            buttonInterest.setBackgroundColor(Color.DKGRAY);
+        }
+
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,6 +101,7 @@ public class InterestAdapter extends BaseAdapter {
                 }
             }
         });
+
         return convertView;
     }
 
@@ -103,6 +113,11 @@ public class InterestAdapter extends BaseAdapter {
             }
             return num;
         }
+    }
+
+    public void setArrayClickedToTrue(int id)
+    {
+        this.interestsClicked.set(id,Boolean.TRUE);
     }
 
 }

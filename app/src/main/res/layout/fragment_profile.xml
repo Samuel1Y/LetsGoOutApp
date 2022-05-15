@@ -13,14 +13,14 @@
         <GridView
             android:id="@+id/gridView"
             android:layout_width="0dp"
-            android:layout_height="144dp"
+            android:layout_height="314dp"
             android:numColumns="3"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.706">
+            app:layout_constraintVertical_bias="0.774">
 
         </GridView>
 
@@ -59,19 +59,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/profileUsername" />
 
-        <TextView
-            android:id="@+id/profileInterests"
-            android:layout_width="262dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="16dp"
-            android:text="Interests"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/profileYourInterest"
-            app:layout_constraintTop_toBottomOf="@+id/profileUsername"
-            app:layout_constraintVertical_bias="0.12" />
-
         <Button
             android:id="@+id/editInterests"
             android:layout_width="wrap_content"
@@ -80,6 +67,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.959" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

@@ -8,6 +8,7 @@ import androidx.room.Query;
 
 import com.example.letsgooutapp.Model.Account;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Dao
@@ -21,4 +22,10 @@ public interface RegisterDao {
 
     @Query("SELECT * FROM account_table")
     LiveData<List<Account>> getAllUsers();
+
+    @Query ("UPDATE account_table SET interests = :newInterests WHERE username = :usernameFrom")
+    void updateInterests(ArrayList<String> newInterests, String usernameFrom);
+
+    @Query("SELECT interests FROM account_table WHERE username = :usernameFrom")
+    LiveData<List<String>> getInterestsByUsername(String usernameFrom);
 }
