@@ -35,8 +35,22 @@ public class Event implements Serializable {
     @ColumnInfo(name = "participants")
     private ArrayList<String> participants;
 
+    @ColumnInfo(name = "interests")
+    private ArrayList<String> interests;
+
     //need participants but I guess we need another table for that
     //also idk if we want to have interests/themes for event or just accounts have those
+
+    public Event(String title, String description, String location, String creator, Double latitude, Double longitude, ArrayList<String> participants, ArrayList<String> interests) {
+        this.title = title;
+        this.description = description;
+        this.location = location;
+        this.creator = creator;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.participants = participants;
+        this.interests = interests;
+    }
 
     public Event(String title, String description, String location, String creator, Double latitude, Double longitude) {
         this.title = title;
@@ -46,6 +60,7 @@ public class Event implements Serializable {
         this.latitude = latitude;
         this.longitude = longitude;
         this.participants = new ArrayList<String>();
+        this.interests = new ArrayList<String>();
     }
 
     public Event(int id, String title, String description, String location, String creator, Double latitude, Double longitude) {
@@ -129,5 +144,12 @@ public class Event implements Serializable {
 
     public void setParticipants(ArrayList<String> participants) {
         this.participants = participants;
+    }
+    public ArrayList<String> getInterests() {
+        return interests;
+    }
+
+    public void setInterests(ArrayList<String> interests) {
+        this.interests = interests;
     }
 }

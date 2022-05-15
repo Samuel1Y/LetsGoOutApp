@@ -37,4 +37,7 @@ public interface EventDao {
 
     @Query("SELECT * FROM event_table")
     LiveData<List<Event>> getAllEvents();
+
+    @Query("SELECT interests FROM event_table WHERE id = :id")
+    LiveData<List<String>> getAllInterestsByEventId(int id);
 }

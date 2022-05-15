@@ -11,11 +11,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 
 import com.example.letsgooutapp.Model.Account;
 import com.example.letsgooutapp.Model.Event;
+import com.example.letsgooutapp.Model.Interest;
+import com.example.letsgooutapp.Model.InterestAdapter;
 import com.example.letsgooutapp.ViewModel.EventViewModel;
+import com.example.letsgooutapp.ViewModel.InterestViewModel;
 import com.example.letsgooutapp.ViewModel.RegisterViewModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,6 +48,12 @@ public class AddEventFragment extends Fragment {
     private EventViewModel eventViewModel;
     private RegisterViewModel registerViewModel;
     private Account loggedInAcc = new Account();
+    private ArrayList<Interest> interests = new ArrayList<>();
+    private ArrayList<Boolean> interestsClicked = new ArrayList<>();
+    private InterestAdapter interestAdapter;
+    private InterestViewModel interestViewModel;
+    private GridView interestsView;
+
 
 
     public AddEventFragment() {
@@ -81,7 +94,19 @@ public class AddEventFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_event, container, false);
+        interestsView = (GridView) view.findViewById(R.id.gridViewAddEvent);
 
+        interestViewModel = new ViewModelProvider(this).get(InterestViewModel.class);
+        interestViewModel.getAllInterests().observe(getViewLifecycleOwner(), new Observer<List<Interest>>() {
+            @Override
+            public void onChanged(List<Interest> interestsFrom) {
+                if (!interestsFrom.isEmpty()) {
+                    interests.addAll(interestsFrom);
+                    interestAdapter = new InterestAdapter(getActivity(),interests, new ArrayList<>());
+                    interestsView.setAdapter(interestAdapter);
+                }
+            }
+        });
         registerViewModel = new ViewModelProvider(this).get(RegisterViewModel.class);
         eventViewModel = new ViewModelProvider(this).get(EventViewModel.class);
         eventViewModel.getAddedEvent().observe(getViewLifecycleOwner(),new Observer<Event>() {
@@ -112,8 +137,16 @@ public class AddEventFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 loadData();
+                Event eventToAdd = new Event(title,description,location, loggedInAcc.getUsername(),eventViewModel.getAddedEvent().getValue().getLatitude(), eventViewModel.getAddedEvent().getValue().getLongitude());
 
-                eventViewModel.addEvent(new Event(title,description,location, loggedInAcc.getUsername(),eventViewModel.getAddedEvent().getValue().getLatitude(), eventViewModel.getAddedEvent().getValue().getLongitude()));
+                ArrayList<Interest> chosenInterests = interestAdapter.getChosenInterests();
+                ArrayList<String> interestStrings = new ArrayList<>();
+                for(Interest interest:chosenInterests) {
+                    interestStrings.add(interest.getInterest());
+                }
+                eventToAdd.setInterests(interestStrings);
+
+                eventViewModel.addEvent(eventToAdd);
                 System.out.println(title+", "+ description+", "+ location +", "+ eventViewModel.getAddedEvent().getValue().getLatitude()+", "+eventViewModel.getAddedEvent().getValue().getLongitude());
 
                 resetValues();

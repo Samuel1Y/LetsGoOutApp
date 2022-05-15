@@ -67,4 +67,9 @@ public class EventViewModel extends AndroidViewModel {
     public LiveData<List<Event>> getAllEvents(){
         return repository.getAllEvents();
     }
+
+    public LiveData<List<String>> getAllInterestsById(int id){
+        return repository.getAllInterestsById(id);
+    }
+
 }

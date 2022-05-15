@@ -97,4 +97,9 @@ public class EventRepository {
     public LiveData<List<Event>> getAllEvents(){
         return eventDao.getAllEvents();
     }
+
+    public LiveData<List<String>> getAllInterestsById(int id){
+        return eventDao.getAllInterestsByEventId(id);
+    }
+
 }
