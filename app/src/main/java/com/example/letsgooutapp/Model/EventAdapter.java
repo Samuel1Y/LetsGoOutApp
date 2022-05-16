@@ -1,6 +1,8 @@
 package com.example.letsgooutapp.Model;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -67,6 +69,25 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
                 notifyItemChanged(selectedPos);
                 selectedPos = getLayoutPosition();
                 notifyItemChanged(selectedPos);
+            });
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    Intent sendIntent = new Intent();
+                    sendIntent.setAction(Intent.ACTION_SEND);
+                    sendIntent.putExtra(Intent.EXTRA_TEXT,
+                            "Event: "+title.getText()+", "
+                            +     "Creator: "+creator.getText()+", "
+                            +     "Location: "+ location.getText()+", "
+                            +     "Participants: "+ participants.getText()
+                            + "\n\n - Shared by Let's Go Out! App"
+                    );
+                    sendIntent.setType("text/plain");
+
+                    Intent shareIntent = Intent.createChooser(sendIntent, null);
+                    view.getContext().startActivity(shareIntent);
+                    return true;
+                }
             });
         }
     }
