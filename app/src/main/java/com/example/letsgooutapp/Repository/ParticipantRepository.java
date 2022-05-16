@@ -55,12 +55,12 @@ public class ParticipantRepository {
         addedParticipant.setValue(participant1);
     }
 
-    public LiveData<List<Integer>> getEventIdsByParticipant(String participant) // GETTING IDs NOT EVENTS
+    public LiveData<List<Integer>> getEventIdsByParticipant(String participant)
     {
         return participantDao.getEventIdsByParticipant(participant);
     }
 
-    public LiveData<List<String>> getParticipantUsernamesByEventId(int eventId) // GETTING USERNAMES NOT PARTICIPANTS
+    public LiveData<List<String>> getParticipantUsernamesByEventId(int eventId)
     {
         return participantDao.getParticipantUsernamesByEventId(eventId);
     }

@@ -30,7 +30,6 @@ public class ParticipantViewModel extends AndroidViewModel {
     }
 
     LiveData<List<String>> getParticipantUsernamesByEventId(int eventId)
-            //NOT DONE MAYBE LiveData<String> since its getting usernames
     {
         return repository.getParticipantUsernamesByEventId(eventId);
     }

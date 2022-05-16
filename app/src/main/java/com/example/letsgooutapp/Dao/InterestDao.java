@@ -18,10 +18,10 @@ public interface InterestDao {
 
     @Query("SELECT interestId FROM interest_table WHERE interest = :interest")
     LiveData<List<Integer>> getEventIdsByInterest(String interest);
-            // <INTEGER> MAYBE ?!!?!
+
     @Query("SELECT interest FROM interest_table WHERE interestId = :interestId")
     LiveData<List<String>> getInterestsByInterestId(int interestId);
-            //String ?!?!?!?
+
     @Query("SELECT * FROM interest_table")
     LiveData<List<Interest>> getAllInterests();
 }

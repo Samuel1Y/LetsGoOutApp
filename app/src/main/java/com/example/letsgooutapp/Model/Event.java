@@ -38,8 +38,6 @@ public class Event implements Serializable {
     @ColumnInfo(name = "interests")
     private ArrayList<String> interests;
 
-    //need participants but I guess we need another table for that
-    //also idk if we want to have interests/themes for event or just accounts have those
 
     public Event(String title, String description, String location, String creator, Double latitude, Double longitude, ArrayList<String> participants, ArrayList<String> interests) {
         this.title = title;

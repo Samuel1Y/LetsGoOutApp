@@ -62,7 +62,6 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     public void submitRegistration(View view) {
-        // finish();
         loadInfo();
         Context context = getApplicationContext();
         if(password.equals(password2)){

@@ -65,7 +65,6 @@ public class HomeActivity extends AppCompatActivity {
             public void onChanged(Event event) {
                 eventViewModel.getAddedEvent().getValue().getLatitude();
                 eventViewModel.getAddedEvent().getValue().getLongitude();
-                System.out.println(eventViewModel.getAddedEvent().toString());
             }
         });
         eventViewModel.getSelectedEventId().observe(this, new Observer<Integer>() {
@@ -117,7 +116,6 @@ public class HomeActivity extends AppCompatActivity {
 
 
     public void joinEvent(View view) {
-        //floating button
         eventViewModel.getParticipantsByEventId(selectedId).observe(this, new Observer<String>() {
             @Override
             public void onChanged(String s) {

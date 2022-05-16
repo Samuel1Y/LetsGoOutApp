@@ -9,12 +9,12 @@
     android:gravity="center">
 
     <Button
-        android:clickable="false"
-        android:focusable="false"
-        android:backgroundTint="#6B6B6B"
+        android:id="@+id/interest_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/interest_name"
+        android:backgroundTint="#6B6B6B"
+        android:clickable="false"
+        android:focusable="false"
         android:text="interest"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

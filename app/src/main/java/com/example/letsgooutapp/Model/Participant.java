@@ -10,17 +10,8 @@ import com.google.firebase.database.annotations.NotNull;
 
 import java.io.Serializable;
 
-@Entity(tableName = "participant_table", primaryKeys = {"eventId", "participantUsername"}
-       /* foreignKeys = {@ForeignKey(entity = parentClass.class,
-                parentColumns = "parrentClasscolumn",
-                childColumns = "childClassColumn",
-                onDelete = ForeignKey.CASCADE),
-        @ForeignKey(entity = Participant.class,
-                parentColumns = "parentClassColumn",
-                childColumns = "childClassColumn",
-                onDelete = ForeignKey.CASCADE)}*/)// idfk XDXDXD
+@Entity(tableName = "participant_table", primaryKeys = {"eventId", "participantUsername"})
 public class Participant implements Serializable {
-//SOMEHOW MAKE FOREIGN KEY ?!?!?!?!?
     @ColumnInfo(name = "eventId")
     @NonNull
     private int eventId;
