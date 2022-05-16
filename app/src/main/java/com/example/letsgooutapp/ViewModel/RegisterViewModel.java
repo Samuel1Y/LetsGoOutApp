@@ -1,6 +1,11 @@
 package com.example.letsgooutapp.ViewModel;
 
+import static com.firebase.ui.auth.AuthUI.getApplicationContext;
+
+import android.annotation.SuppressLint;
 import android.app.Application;
+import android.content.Context;
+import android.widget.Toast;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
@@ -21,8 +26,13 @@ public class RegisterViewModel extends AndroidViewModel {
         repository = RegisterRepository.getInstance(application);
     }
 
-    public void addNewAccount(Account account) {
+    public boolean addNewAccount(Account account) {
+        if(account.getUsername().equals("") || account.getEmail().equals("") || account.getPassword().equals(""))
+        {
+            return false;
+        }
         repository.addNewAccount(account);
+        return true;
     }
 
     public LiveData<Account> getRegisteredUser() {

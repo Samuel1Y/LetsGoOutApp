@@ -64,12 +64,16 @@ public class RegisterActivity extends AppCompatActivity {
     public void submitRegistration(View view) {
         // finish();
         loadInfo();
+        Context context = getApplicationContext();
         if(password.equals(password2)){
             Account account = new Account(username, email,password);
-            registerViewModel.addNewAccount(account);
+            if(!registerViewModel.addNewAccount(account)){
+                String text = "Please fill out all of the info";
+                int duration = Toast.LENGTH_SHORT;
+                Toast.makeText(context, text, duration).show();
+            };
         }
         else{
-            Context context = getApplicationContext();
             String text = "Passwords do not match";
             int duration = Toast.LENGTH_SHORT;
             Toast.makeText(context, text, duration).show();
