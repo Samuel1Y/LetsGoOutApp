@@ -15,6 +15,8 @@ Let’s Go out app
 
 motivation: let’s meet new people in you area and socialize when we finally can 
 
+video: https://youtu.be/BaSQoG2fjmk
+
 Requirements: 
 HIGHT
 - [X] 1.As a user I want to be able to register, so I can have my personal account
