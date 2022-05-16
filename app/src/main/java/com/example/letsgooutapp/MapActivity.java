@@ -64,7 +64,6 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
             @Override
             public void onChanged(List<Event> eventsFrom) {
                 if (!eventsFrom.isEmpty()) {
-                    //events.addAll(eventsFrom);
                     for (int i = 0; i < eventsFrom.size(); i++)
                     {
                         LatLng position = new LatLng(eventsFrom.get(i).getLatitude(),eventsFrom.get(i).getLongitude());
@@ -93,9 +92,6 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         mMap = googleMap;
 
 
-        // Add a marker in Horsens and move the camera
-        //LatLng horsens = new LatLng(55.858131, 9.847588);
-        //mMap.addMarker(new MarkerOptions().position(horsens).title("Marker in Horsens"));
         mMap.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
             @Override
             public void onMarkerDrag(@NonNull Marker marker) {
@@ -112,10 +108,6 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 
             }
         });
-        //ArrayList<Event> events = new ArrayList<Event>();
-        //events.add(new Event("going out", "just going out with few friends", "horsens", "me", 55.858141, 9.847580));
-        //events.add(new Event("house party", "party lmao", "Aarhus", "not me", 55.958231, 9.947688));
-        //events.add(new Event("going to restaurant", "me hungry me eat", "Vejle", "my friend", 55.858251, 9.848588));
 
         eventMarker = mMap.addMarker(
                 new MarkerOptions()
@@ -129,17 +121,8 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
     public void selectLocation(View view)
     {
         eventMarker.getPosition();
-        System.out.println(eventMarker.getPosition().toString());
         eventViewModel.getAddedEvent().getValue().setLatitude(eventMarker.getPosition().latitude);
         eventViewModel.getAddedEvent().getValue().setLongitude(eventMarker.getPosition().longitude);
-        System.out.println(eventViewModel.getAddedEvent().getValue().getLatitude());
-        System.out.println(eventViewModel.getAddedEvent().getValue().getLongitude());
-
-
-        //AddEventFragment fragment = new AddEventFragment();
-        //bundle.putDouble("latitude",0.0);
-        //bundle.putDouble("longitude",0.0);
-        //fragment.setArguments(bundle);
         finish();
     }
 }

@@ -55,7 +55,7 @@ public class InterestRepository {
         return addedInterest;
     }
 
-    public LiveData<List<Integer>> getEventIdsByInterest(String interest) // GETTING IDs NOT EVENTS
+    public LiveData<List<Integer>> getEventIdsByInterest(String interest)
     {
         return interestDao.getEventIdsByInterest(interest);
     }

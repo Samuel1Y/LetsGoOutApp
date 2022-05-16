@@ -42,7 +42,11 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         viewHolder.title.setText(events.get(position).getTitle());
         viewHolder.location.setText(events.get(position).getLocation());
         viewHolder.creator.setText(events.get(position).getCreator());
-        viewHolder.participants.setText(events.get(position).getParticipants().toString());
+        if (events.get(position).getParticipants().toString().equals("[]"))
+        {
+            viewHolder.participants.setText("No one :(");
+        }
+        else viewHolder.participants.setText(events.get(position).getParticipants().toString());
         viewHolder.itemView.setSelected(selectedPos == position);
     }
 

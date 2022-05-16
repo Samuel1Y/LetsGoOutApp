@@ -30,7 +30,6 @@ public interface EventDao {
 
     @Query("SELECT * FROM event_table WHERE title = :title")
     LiveData<Event> getEventByTitle(String title);
-    //exception if 2 events have same name ?
 
     @Query("SELECT participants FROM event_table WHERE id = :id")
     LiveData<List<String>> getParticipantsByEventTitle(int id);

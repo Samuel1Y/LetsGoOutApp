@@ -40,12 +40,9 @@ import java.util.List;
  */
 public class ProfileFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -64,15 +61,6 @@ public class ProfileFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProfileFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static ProfileFragment newInstance(String param1, String param2) {
         ProfileFragment fragment = new ProfileFragment();
         Bundle args = new Bundle();
@@ -100,11 +88,9 @@ public class ProfileFragment extends Fragment {
                         Type listType = new TypeToken<ArrayList<String>>() {}.getType();
                         ArrayList<String> stringArray = gson.fromJson(stringsInterests.get(0), listType);
                         for (String stringId : stringArray) {
-                            //Interest interestToAdd = interests.get(Integer.parseInt(stringId));
                             myInterests.add(Integer.parseInt(stringId));
                             interestAdapter = new InterestAdapter(getActivity(),interests, myInterests);
                             interestsView.setAdapter(interestAdapter);
-                            //interestAdapter.setArrayClickedToTrue(Integer.parseInt(stringId));
                         }
                     }
                 }
@@ -118,13 +104,7 @@ public class ProfileFragment extends Fragment {
                     interests.addAll(interestsFrom);
                     interestAdapter = new InterestAdapter(getActivity(),interests, myInterests);
                     interestsView.setAdapter(interestAdapter);
-                    /*interestsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            Toast.makeText(getActivity(),"You Clicked on "+ interests.get(position).getInterest(),Toast.LENGTH_SHORT).show();
-                            interestsClicked.set(position, !interestsClicked.get(position));
-                        }
-                    });*/
+
                 }
             }
         });
@@ -150,15 +130,6 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        /*interestAdapter = new InterestAdapter(getActivity(),interests);
-        interestsView.setAdapter(interestAdapter);
-        interestsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                Toast.makeText(getActivity(),"You Clicked on "+ interests.get(position).getInterest(),Toast.LENGTH_SHORT).show();
-            }
-        });*/
         return view;
     }
 

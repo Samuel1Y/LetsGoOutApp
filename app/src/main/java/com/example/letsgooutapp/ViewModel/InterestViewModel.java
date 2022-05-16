@@ -39,12 +39,19 @@ public class InterestViewModel extends AndroidViewModel {
     {
         MutableLiveData<List<Interest>> toSend = new MutableLiveData<>();
         ArrayList<Interest> interests = new ArrayList<>();
-        Interest interest = new Interest("Sports",0);
+        /*Interest interest = new Interest("Sports",0);
         Interest interest1 = new Interest("Fashion",1);
-        Interest interest2 = new Interest("IT",2);
-        interests.add(interest);
-        interests.add(interest1);
-        interests.add(interest2);
+        Interest interest2 = new Interest("IT",2);*/
+
+        interests.add(new Interest("Sports", 0));
+        interests.add(new Interest("Fashion", 1));
+        interests.add(new Interest("IT", 2));
+        interests.add(new Interest("Music", 3));
+        interests.add(new Interest("Anime", 4));
+        interests.add(new Interest("Gaming", 5));
+        interests.add(new Interest("Art", 6));
+        interests.add(new Interest("Reading", 7));
+
         toSend.setValue(interests);
 
         return toSend;
