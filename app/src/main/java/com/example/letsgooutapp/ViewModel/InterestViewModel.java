@@ -42,9 +42,16 @@ public class InterestViewModel extends AndroidViewModel {
         Interest interest = new Interest("Sports",0);
         Interest interest1 = new Interest("Fashion",1);
         Interest interest2 = new Interest("IT",2);
+        Interest interest3 = new Interest("Photography",3);
+        Interest interest4 = new Interest("Art",4);
+        Interest interest5 = new Interest("Music",5);
         interests.add(interest);
         interests.add(interest1);
         interests.add(interest2);
+        interests.add(interest3);
+        interests.add(interest4);
+        interests.add(interest5);
+
         toSend.setValue(interests);
 
         return toSend;

@@ -88,7 +88,7 @@ public class InterestAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 //Toast.makeText(context,"You Clicked "+interests.get(position).getInterest(),Toast.LENGTH_LONG).show();
-                if(countInterests()<5) {
+                if(countInterests()<5 || (countInterests()==5 && (interestsClicked.get(position)))) {
                     interestsClicked.set(position, !interestsClicked.get(position));
                     if (interestsClicked.get(position)) {
                         buttonInterest.setBackgroundColor(Color.CYAN);
